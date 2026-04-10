@@ -1,27 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:IdeaPicker.Models"
              x:Class="IdeaPicker.MainPage"
-             BackgroundColor="#FF83"
+             BackgroundColor="#FF8383"
              Title="Date Night Picker">
              
     <StackLayout Padding="20,20">
         
-        <!-- <Frame CornerRadius="12" Padding="12" BorderColor="LightCoral" -->
-        <!--        <CollectionView ></CollectionView> -->
-        
-        
+        <Label Text="Dates" FontSize="Large" TextColor="Black" Margin="0,10,0,10"/>
+        <Border Stroke="Black" StrokeThickness="4">
+            <CollectionView HeightRequest="220" Margin="8">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:DateNight">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}"
+                                   FontSize="8" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Border>
+            
         <Label Text="Date" FontSize="Title" FontAttributes="Bold" Margin="0,10,0,10" />
-    <Border Stroke="black" StrokeThickness="4">
+        <Border Stroke="Black" StrokeThickness="4">
         <Entry x:Name="txtDateNight" IsReadOnly="True"/>
     </Border>
     
     <Label Text="Date Description" FontSize="Title" FontAttributes="Bold" Margin="0,10,0,10" />
-    <Border Stroke="black" StrokeThickness="4">
+    <Border Stroke="Black" StrokeThickness="4">
     <Entry x:Name="txtDateDescription" IsReadOnly="True" />
     </Border>
     
-    <Button Text="Pick a Date Night!" FontSize="Title" Margin="0,80,0,0" Clicked="btnDatePicker_OnClicked" />
+    <Button Text="Pick a Date Night!" FontSize="Title" Margin="0,80,0,0" BackgroundColor="#C0392B" Clicked="btnDatePicker_OnClicked" TextColor="White" CornerRadius="12"/>
     
     </StackLayout>
 </ContentPage>

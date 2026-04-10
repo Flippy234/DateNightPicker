@@ -5,17 +5,28 @@ namespace IdeaPicker;
 
 public partial class MainPage : ContentPage
 {
+    private readonly Repository _repo;
 
     public MainPage()
     {
         InitializeComponent();
+        _repo = new Repository();
         Title = "Idea Picker";
     }
 
     private void btnDatePicker_OnClicked(object sender, EventArgs e)
     {
-        var newDateNight = new DateNight();
-        newDateNight.Name = txtDateNight.Text;
-        newDateNight.Description = txtDateDescription.Text;
+        var date = _repo.GetRandomDate();
+
+        if (date == null)
+        {
+            txtDateNight.Text = "No Dates found...";
+            txtDateDescription.Text = string.Empty;
+            return;
+        }
+
+        txtDateNight.Text = date.Name;
+        txtDateDescription.Text = date.Description;
+
     }
 }
